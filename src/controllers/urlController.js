@@ -7,11 +7,12 @@ const { promisify } = require("util")
 
 //1. connect to the server and Connection setup for redis
 const redisClient = redis.createClient(
-    15007,
-    "redis-15007.c1.asia-northeast1-1.gce.cloud.redislabs.com",
+    11440,
+    
+    "redis-11440.c299.asia-northeast1-1.gce.cloud.redislabs.com",
     { no_ready_check: true }
 );
-redisClient.auth("yOhluNiC8w026iPNjrrbQ6mgM421WMCU", function (err) {
+redisClient.auth("q8YSVP3SJXqJdNLzzyu6YxLKZF6OzCMj", function (err) {
     if (err) throw err;
 });
 
@@ -32,7 +33,7 @@ const createUrl = async function (req, res) {
         const urlCode = shortid.generate(); // generate the unique code
         // check the data are present or not 
         if (!Validator.isValidReqBody(data)) { return res.status(400).send({ status: false, msg: "Please provide data" }) }
-        // required the url in body
+        // required the longurl in body
         if (!Validator.isValid(longUrl)) return res.status(400).send({ status: false, msg: "Please provide long Url Link" })
         // validation  of url link
         if (Validator.validUrl(longUrl)) {
